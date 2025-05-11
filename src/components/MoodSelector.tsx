@@ -14,15 +14,16 @@ interface MoodOption {
   value: Mood;
   label: string;
   icon: React.ReactNode;
+  emoji: string;
   className: string;
 }
 
 export default function MoodSelector({ selectedMood, onMoodSelect }: MoodSelectorProps) {
   const moods: MoodOption[] = [
-    { value: "happy", label: "Happy", icon: <Smile className="h-5 w-5" />, className: "mood-happy" },
-    { value: "calm", label: "Calm", icon: <Sun className="h-5 w-5" />, className: "mood-calm" },
-    { value: "neutral", label: "Neutral", icon: <Meh className="h-5 w-5" />, className: "mood-neutral" },
-    { value: "sad", label: "Sad", icon: <Frown className="h-5 w-5" />, className: "mood-sad" },
+    { value: "happy", label: "Happy", icon: <Smile className="h-5 w-5" />, emoji: "😊", className: "mood-happy" },
+    { value: "calm", label: "Calm", icon: <Sun className="h-5 w-5" />, emoji: "😌", className: "mood-calm" },
+    { value: "neutral", label: "Neutral", icon: <Meh className="h-5 w-5" />, emoji: "😐", className: "mood-neutral" },
+    { value: "sad", label: "Sad", icon: <Frown className="h-5 w-5" />, emoji: "😔", className: "mood-sad" },
   ];
 
   return (
@@ -39,8 +40,8 @@ export default function MoodSelector({ selectedMood, onMoodSelect }: MoodSelecto
             }`}
             onClick={() => onMoodSelect(mood.value)}
           >
-            {mood.icon}
-            {mood.label}
+            <span>{mood.emoji}</span>
+            <span>{mood.label}</span>
           </Button>
         ))}
       </div>

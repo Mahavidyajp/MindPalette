@@ -36,11 +36,17 @@ export default function StreakCalendar({
           <div className="flex flex-col justify-center space-y-4">
             <div className="text-center p-4 border rounded-lg bg-muted/30">
               <div className="text-muted-foreground text-sm mb-1">Current Streak</div>
-              <div className="text-3xl font-bold text-primary">{currentStreak} days</div>
+              <div className="flex items-center justify-center space-x-2">
+                <div className="text-3xl font-bold text-primary">{currentStreak}</div>
+                <div className="text-3xl">🔥</div>
+              </div>
             </div>
             <div className="text-center p-4 border rounded-lg bg-muted/30">
               <div className="text-muted-foreground text-sm mb-1">Longest Streak</div>
-              <div className="text-3xl font-bold text-primary">{longestStreak} days</div>
+              <div className="flex items-center justify-center space-x-2">
+                <div className="text-3xl font-bold text-primary">{longestStreak}</div>
+                <div className="text-3xl">🏆</div>
+              </div>
             </div>
           </div>
           <div>
@@ -54,8 +60,8 @@ export default function StreakCalendar({
               }}
               modifiersStyles={{
                 highlighted: {
-                  backgroundColor: "hsl(var(--primary) / 0.2)",
-                  color: "hsl(var(--primary))",
+                  backgroundColor: "hsl(var(--accent))",
+                  color: "hsl(var(--accent-foreground))",
                   fontWeight: "bold",
                 },
               }}

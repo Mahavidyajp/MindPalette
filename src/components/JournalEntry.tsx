@@ -40,13 +40,29 @@ export default function JournalEntry({
     }
   };
 
+  const getMoodEmoji = () => {
+    switch (mood) {
+      case "happy":
+        return "😊";
+      case "calm":
+        return "😌";
+      case "neutral":
+        return "😐";
+      case "sad":
+        return "😔";
+      default:
+        return "";
+    }
+  };
+
   return (
     <Card className="journal-card hover:cursor-pointer transition-all">
       <CardHeader className="pb-2 pt-4">
         <div className="flex justify-between items-start gap-2">
           <CardTitle className="text-xl line-clamp-1">{title}</CardTitle>
-          <Badge variant="outline" className={`${getMoodClass()} capitalize`}>
-            {mood}
+          <Badge variant="outline" className={`${getMoodClass()} capitalize flex items-center gap-1`}>
+            <span>{getMoodEmoji()}</span>
+            <span>{mood}</span>
           </Badge>
         </div>
       </CardHeader>
