@@ -105,14 +105,15 @@
     background: linear-gradient(135deg, #243A1F 0%, #192B43 100%);
   }
 
-  .mood-happy {
+  /* Mood color classes for emoji representation */
+  .mood-extremely-happy {
     @apply bg-green-100 text-green-700 border-green-200;
     .dark & {
       @apply bg-green-900/30 text-green-400 border-green-800;
     }
   }
 
-  .mood-calm {
+  .mood-happy {
     @apply bg-blue-100 text-blue-700 border-blue-200;
     .dark & {
       @apply bg-blue-900/30 text-blue-400 border-blue-800;
@@ -130,6 +131,27 @@
     @apply bg-red-100 text-red-700 border-red-200;
     .dark & {
       @apply bg-red-900/30 text-red-400 border-red-800;
+    }
+  }
+
+  .mood-very-sad {
+    @apply bg-rose-100 text-rose-700 border-rose-200;
+    .dark & {
+      @apply bg-rose-900/30 text-rose-400 border-rose-800;
+    }
+  }
+
+  .mood-confused {
+    @apply bg-purple-100 text-purple-700 border-purple-200;
+    .dark & {
+      @apply bg-purple-900/30 text-purple-400 border-purple-800;
+    }
+  }
+
+  .mood-overwhelmed {
+    @apply bg-orange-100 text-orange-700 border-orange-200;
+    .dark & {
+      @apply bg-orange-900/30 text-orange-400 border-orange-800;
     }
   }
 
