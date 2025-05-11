@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -44,7 +43,7 @@ const sampleEntries: JournalEntryProps[] = [
     title: "Evening Walk",
     content:
       "Took a long walk by the river this evening. The fresh air and exercise helped clear my mind and improve my mood.",
-    mood: "calm",
+    mood: "neutral",
     collections: ["3"],
     createdAt: new Date(2023, 4, 11),
     isDraft: true,
@@ -229,32 +228,53 @@ export default function JournalEntries() {
               <h3 className="text-sm font-medium">Filter by mood</h3>
               <div className="flex flex-wrap gap-2">
                 <Badge
+                  variant={selectedMood === "extremely-happy" ? "default" : "outline"}
+                  className="mood-extremely-happy cursor-pointer"
+                  onClick={() => handleMoodSelect("extremely-happy")}
+                >
+                  😄 Extremely Happy
+                </Badge>
+                <Badge
                   variant={selectedMood === "happy" ? "default" : "outline"}
                   className="mood-happy cursor-pointer"
                   onClick={() => handleMoodSelect("happy")}
                 >
-                  Happy
-                </Badge>
-                <Badge
-                  variant={selectedMood === "calm" ? "default" : "outline"}
-                  className="mood-calm cursor-pointer"
-                  onClick={() => handleMoodSelect("calm")}
-                >
-                  Calm
+                  😊 Happy
                 </Badge>
                 <Badge
                   variant={selectedMood === "neutral" ? "default" : "outline"}
                   className="mood-neutral cursor-pointer"
                   onClick={() => handleMoodSelect("neutral")}
                 >
-                  Neutral
+                  😐 Neutral
                 </Badge>
                 <Badge
                   variant={selectedMood === "sad" ? "default" : "outline"}
                   className="mood-sad cursor-pointer"
                   onClick={() => handleMoodSelect("sad")}
                 >
-                  Sad
+                  😔 Sad
+                </Badge>
+                <Badge
+                  variant={selectedMood === "very-sad" ? "default" : "outline"}
+                  className="mood-very-sad cursor-pointer"
+                  onClick={() => handleMoodSelect("very-sad")}
+                >
+                  😢 Very Sad
+                </Badge>
+                <Badge
+                  variant={selectedMood === "confused" ? "default" : "outline"}
+                  className="mood-confused cursor-pointer"
+                  onClick={() => handleMoodSelect("confused")}
+                >
+                  😕 Confused
+                </Badge>
+                <Badge
+                  variant={selectedMood === "overwhelmed" ? "default" : "outline"}
+                  className="mood-overwhelmed cursor-pointer"
+                  onClick={() => handleMoodSelect("overwhelmed")}
+                >
+                  😰 Overwhelmed
                 </Badge>
                 {selectedMood && (
                   <Badge

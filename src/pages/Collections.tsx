@@ -74,7 +74,7 @@ const sampleCollections: Collection[] = [
         id: "3",
         title: "Evening Walk",
         content: "Took a long walk by the river this evening. The fresh air and exercise helped clear my mind and improve my mood.",
-        mood: "calm",
+        mood: "neutral",
         collections: ["3"],
         createdAt: new Date(2023, 4, 11),
         isDraft: true,

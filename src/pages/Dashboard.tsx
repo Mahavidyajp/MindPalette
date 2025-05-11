@@ -21,20 +21,20 @@ const sampleCollections = [
 
 // Sample mock data for mood chart
 const sampleMoodData = [
-  { date: "2023-05-01", value: 3, mood: "happy" },
-  { date: "2023-05-02", value: 3, mood: "happy" },
-  { date: "2023-05-03", value: 2, mood: "calm" },
-  { date: "2023-05-04", value: 1, mood: "neutral" },
-  { date: "2023-05-05", value: 0, mood: "sad" },
-  { date: "2023-05-06", value: 1, mood: "neutral" },
-  { date: "2023-05-07", value: 2, mood: "calm" },
-  { date: "2023-05-08", value: 3, mood: "happy" },
-  { date: "2023-05-09", value: 2, mood: "calm" },
-  { date: "2023-05-10", value: 3, mood: "happy" },
-  { date: "2023-05-11", value: 2, mood: "calm" },
-  { date: "2023-05-12", value: 2, mood: "calm" },
-  { date: "2023-05-13", value: 1, mood: "neutral" },
-  { date: "2023-05-14", value: 0, mood: "sad" },
+  { date: "2023-05-01", value: 5, mood: "happy" },
+  { date: "2023-05-02", value: 5, mood: "happy" },
+  { date: "2023-05-03", value: 4, mood: "neutral" },
+  { date: "2023-05-04", value: 4, mood: "neutral" },
+  { date: "2023-05-05", value: 3, mood: "sad" },
+  { date: "2023-05-06", value: 4, mood: "neutral" },
+  { date: "2023-05-07", value: 6, mood: "extremely-happy" },
+  { date: "2023-05-08", value: 5, mood: "happy" },
+  { date: "2023-05-09", value: 2, mood: "very-sad" },
+  { date: "2023-05-10", value: 5, mood: "happy" },
+  { date: "2023-05-11", value: 1, mood: "confused" },
+  { date: "2023-05-12", value: 0, mood: "overwhelmed" },
+  { date: "2023-05-13", value: 4, mood: "neutral" },
+  { date: "2023-05-14", value: 3, mood: "sad" },
 ];
 
 // Sample entry dates for streak calendar
@@ -77,7 +77,7 @@ const sampleRecentEntries: JournalEntryProps[] = [
     title: "Evening Walk",
     content:
       "Took a long walk by the river this evening. The fresh air and exercise helped clear my mind and improve my mood.",
-    mood: "calm",
+    mood: "neutral",
     collections: ["3"],
     createdAt: new Date(2023, 4, 11),
     isDraft: true,
@@ -87,14 +87,19 @@ const sampleRecentEntries: JournalEntryProps[] = [
 // Calculate mood distribution data
 const calculateMoodDistribution = (entries: JournalEntryProps[]) => {
   const distribution = {
-    happy: 0,
-    calm: 0,
-    neutral: 0,
-    sad: 0
+    "extremely-happy": 0,
+    "happy": 0,
+    "neutral": 0,
+    "sad": 0,
+    "very-sad": 0,
+    "confused": 0,
+    "overwhelmed": 0
   };
   
   entries.forEach(entry => {
-    distribution[entry.mood]++;
+    if (distribution[entry.mood]) {
+      distribution[entry.mood]++;
+    }
   });
   
   return Object.entries(distribution).map(([mood, count]) => ({
@@ -178,8 +183,6 @@ export default function Dashboard() {
             <MoodChart data={sampleMoodData} />
             <StreakCalendar
               entryDates={sampleEntryDates}
-              currentStreak={5}
-              longestStreak={7}
             />
           </section>
           
