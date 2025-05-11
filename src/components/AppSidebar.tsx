@@ -1,136 +1,123 @@
 
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
-  SidebarTrigger,
+  SidebarFooter,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
-import ThemeToggle from "./ThemeToggle";
-import { useIsMobile } from "@/hooks/use-mobile";
+import ThemeToggle from "@/components/ThemeToggle";
+import { FileText, Home, FolderOpen, PencilLine, LogOut } from "lucide-react";
+
+interface Collection {
+  id: string;
+  name: string;
+  entryCount?: number;
+}
 
 interface AppSidebarProps {
   onLogout: () => void;
-  collections: { id: string; name: string }[];
+  collections: Collection[];
   onNewEntry: () => void;
 }
 
-export default function AppSidebar({ onLogout, collections, onNewEntry }: AppSidebarProps) {
-  const isMobile = useIsMobile();
-  
+export default function AppSidebar({
+  onLogout,
+  collections,
+  onNewEntry,
+}: AppSidebarProps) {
+  const location = useLocation();
+  const [isExpanded, setIsExpanded] = useState(true);
+
+  const isActive = (path: string) => location.pathname === path;
+
   return (
-    <Sidebar className="border-r">
-      <SidebarHeader className="flex items-center justify-between p-4">
-        <h2 className="text-xl font-semibold flex items-center">
-          <span className="text-primary">Reflect</span>
-        </h2>
-        {isMobile && <SidebarTrigger />}
+    <Sidebar
+      defaultCollapsed={false}
+      collapsedWidth={0}
+      className="border-r"
+    >
+      <SidebarHeader className="p-4">
+        <div className="flex items-center gap-2 mb-4">
+          <FileText className="h-6 w-6 text-primary" />
+          <h1 className="text-xl font-bold text-primary">Reflect</h1>
+        </div>
+        <Button onClick={onNewEntry} className="w-full mb-2" size="sm">
+          <PencilLine className="h-4 w-4 mr-2" />
+          New Entry
+        </Button>
       </SidebarHeader>
 
-      <SidebarContent>
-        <div className="px-3 py-2">
-          <Button className="w-full" onClick={onNewEntry}>
-            New Entry
-          </Button>
+      <SidebarContent className="px-2">
+        <nav className="space-y-1 mb-4">
+          <Link to="/">
+            <Button
+              variant={isActive("/") ? "secondary" : "ghost"}
+              className="w-full justify-start"
+              size="sm"
+            >
+              <Home className="h-4 w-4 mr-2" />
+              Dashboard
+            </Button>
+          </Link>
+          <Link to="/entries">
+            <Button
+              variant={isActive("/entries") ? "secondary" : "ghost"}
+              className="w-full justify-start"
+              size="sm"
+            >
+              <FileText className="h-4 w-4 mr-2" />
+              Entries
+            </Button>
+          </Link>
+          <Link to="/collections">
+            <Button
+              variant={isActive("/collections") ? "secondary" : "ghost"}
+              className="w-full justify-start"
+              size="sm"
+            >
+              <FolderOpen className="h-4 w-4 mr-2" />
+              Collections
+            </Button>
+          </Link>
+        </nav>
+
+        <div className="mb-4">
+          <h3 className="text-xs font-medium text-muted-foreground px-3 mb-2">
+            Collections
+          </h3>
+          <div className="space-y-1">
+            {collections.map((collection) => (
+              <Link
+                key={collection.id}
+                to={`/collections`}
+                className="block"
+              >
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="w-full justify-start text-sm font-normal"
+                >
+                  {collection.name}
+                  {collection.entryCount && (
+                    <span className="ml-auto text-xs text-muted-foreground">
+                      {collection.entryCount}
+                    </span>
+                  )}
+                </Button>
+              </Link>
+            ))}
+          </div>
         </div>
-
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <a href="/" className={`${window.location.pathname === "/" ? "bg-accent" : ""}`}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="w-4 h-4 mr-2"
-                >
-                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                  <polyline points="9 22 9 12 15 12 15 22" />
-                </svg>
-                Dashboard
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <a href="/entries" className={`${window.location.pathname === "/entries" ? "bg-accent" : ""}`}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="w-4 h-4 mr-2"
-                >
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                  <polyline points="14 2 14 8 20 8" />
-                  <line x1="16" y1="13" x2="8" y2="13" />
-                  <line x1="16" y1="17" x2="8" y2="17" />
-                  <line x1="10" y1="9" x2="8" y2="9" />
-                </svg>
-                All Entries
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
-
-        {collections.length > 0 && (
-          <>
-            <div className="px-4 py-2">
-              <h3 className="mb-2 text-xs font-medium text-muted-foreground">Collections</h3>
-            </div>
-            <SidebarMenu>
-              {collections.map((collection) => (
-                <SidebarMenuItem key={collection.id}>
-                  <SidebarMenuButton asChild>
-                    <a
-                      href={`/collections/${collection.id}`}
-                      className={`${
-                        window.location.pathname === `/collections/${collection.id}`
-                          ? "bg-accent"
-                          : ""
-                      }`}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="w-4 h-4 mr-2"
-                      >
-                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
-                        <polyline points="17 21 17 13 7 13 7 21" />
-                        <polyline points="7 3 7 8 15 8" />
-                      </svg>
-                      {collection.name}
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </>
-        )}
       </SidebarContent>
 
       <SidebarFooter className="p-4 border-t">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-4">
           <ThemeToggle />
-          <Button variant="outline" size="sm" onClick={onLogout}>
-            Sign Out
+          <Button variant="ghost" size="icon" onClick={onLogout}>
+            <LogOut className="h-5 w-5" />
           </Button>
         </div>
       </SidebarFooter>

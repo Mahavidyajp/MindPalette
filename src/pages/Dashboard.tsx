@@ -8,6 +8,9 @@ import JournalEditor from "@/components/JournalEditor";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import AppSidebar from "@/components/AppSidebar";
 import { useNavigate } from "react-router-dom";
+import ThemeSelector from "@/components/ThemeSelector";
+import { FadeIn } from "@/components/animations/FadeIn";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 // Sample mock data for our collections
 const sampleCollections = [
@@ -82,11 +85,31 @@ const sampleRecentEntries: JournalEntryProps[] = [
   },
 ];
 
+// Calculate mood distribution data
+const calculateMoodDistribution = (entries: JournalEntryProps[]) => {
+  const distribution = {
+    happy: 0,
+    calm: 0,
+    neutral: 0,
+    sad: 0
+  };
+  
+  entries.forEach(entry => {
+    distribution[entry.mood]++;
+  });
+  
+  return Object.entries(distribution).map(([mood, count]) => ({
+    name: mood,
+    value: count
+  }));
+};
+
 export default function Dashboard() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [entries, setEntries] = useState<JournalEntryProps[]>(sampleRecentEntries);
+  const [moodDistribution] = useState(calculateMoodDistribution([...sampleRecentEntries, ...sampleRecentEntries]));
 
   // Check if user is logged in
   useEffect(() => {
@@ -146,6 +169,7 @@ export default function Dashboard() {
               </p>
             </div>
             <div className="flex items-center gap-2">
+              <ThemeSelector />
               <SidebarTrigger className="md:hidden" />
               <Button onClick={handleNewEntry}>New Entry</Button>
             </div>
@@ -159,6 +183,79 @@ export default function Dashboard() {
               longestStreak={7}
             />
           </section>
+          
+          <FadeIn delay={0.2}>
+            <section className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+              <Card className="col-span-1">
+                <CardHeader>
+                  <CardTitle>Mood Distribution</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    {moodDistribution.map((item) => (
+                      <div key={item.name} className="flex items-center">
+                        <div className={`w-3 h-3 rounded-full mood-${item.name} mr-2`}></div>
+                        <span className="capitalize text-sm">{item.name}</span>
+                        <div className="ml-auto font-medium">{item.value}</div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="col-span-1">
+                <CardHeader>
+                  <CardTitle>Collections</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    {sampleCollections.map((collection) => (
+                      <div key={collection.id} className="flex items-center">
+                        <span className="text-sm">{collection.name}</span>
+                        <div className="ml-auto">
+                          <Button 
+                            variant="ghost" 
+                            size="sm"
+                            onClick={() => navigate("/collections")}
+                          >
+                            View
+                          </Button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="col-span-2">
+                <CardHeader>
+                  <CardTitle>Activity</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <div className="text-2xl font-bold">{entries.length}</div>
+                        <div className="text-xs text-muted-foreground">Total Entries</div>
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold">5</div>
+                        <div className="text-xs text-muted-foreground">Current Streak</div>
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold">7</div>
+                        <div className="text-xs text-muted-foreground">Longest Streak</div>
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold">3</div>
+                        <div className="text-xs text-muted-foreground">This Week</div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </section>
+          </FadeIn>
 
           <section>
             <div className="flex items-center justify-between mb-6">

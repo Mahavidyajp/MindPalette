@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Textarea } from "@/components/ui/textarea";
 import MoodSelector from "./MoodSelector";
 import CollectionSelector from "./CollectionSelector";
 import { toast } from "sonner";
 import { JournalEntryProps } from "./JournalEntry";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 type Mood = "happy" | "calm" | "neutral" | "sad";
 
@@ -24,6 +25,23 @@ interface JournalEditorProps {
   collections: Collection[];
   initialEntry?: Partial<JournalEntryProps>;
 }
+
+const modules = {
+  toolbar: [
+    [{ 'header': [1, 2, false] }],
+    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+    [{'list': 'ordered'}, {'list': 'bullet'}],
+    ['link'],
+    ['clean']
+  ],
+};
+
+const formats = [
+  'header',
+  'bold', 'italic', 'underline', 'strike', 'blockquote',
+  'list', 'bullet',
+  'link'
+];
 
 export default function JournalEditor({
   isOpen,
@@ -100,7 +118,7 @@ export default function JournalEditor({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>
             {initialEntry ? "Edit Journal Entry" : "New Journal Entry"}
@@ -119,13 +137,17 @@ export default function JournalEditor({
           
           <div className="space-y-2">
             <Label htmlFor="content">Content</Label>
-            <Textarea
-              id="content"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              placeholder="What's on your mind today?"
-              className="min-h-[180px]"
-            />
+            <div className="min-h-[200px]">
+              <ReactQuill
+                theme="snow"
+                value={content}
+                onChange={setContent}
+                modules={modules}
+                formats={formats}
+                placeholder="What's on your mind today?"
+                className="h-[200px] mb-12"
+              />
+            </div>
           </div>
           
           <MoodSelector selectedMood={mood} onMoodSelect={setMood} />
