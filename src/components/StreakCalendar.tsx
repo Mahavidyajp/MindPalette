@@ -10,6 +10,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { useState, useMemo } from "react";
 import { differenceInDays, isSameDay, format } from "date-fns";
 import { Badge } from "./ui/badge";
+import { Flame, Trophy } from "lucide-react";
 
 interface StreakCalendarProps {
   entryDates: Date[];
@@ -83,10 +84,12 @@ export default function StreakCalendar({ entryDates }: StreakCalendarProps) {
           <span>Your journaling consistency</span>
           <div className="flex gap-2">
             <Badge variant="outline" className="flex items-center gap-1">
-              <span>🔥</span> Current: {currentStreak}
+              <Flame className="h-4 w-4 text-orange-500" />
+              <span>Current: {currentStreak}</span>
             </Badge>
             <Badge variant="outline" className="flex items-center gap-1">
-              <span>🏆</span> Longest: {longestStreak}
+              <Trophy className="h-4 w-4 text-yellow-500" />
+              <span>Longest: {longestStreak}</span>
             </Badge>
           </div>
         </CardDescription>
