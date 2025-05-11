@@ -1,9 +1,9 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Smile, Meh, Frown, Sun } from "lucide-react";
+import { Smile, Meh, Frown, Sun, AlertTriangle, HelpCircle } from "lucide-react";
 
-type Mood = "happy" | "calm" | "neutral" | "sad";
+type Mood = "extremely-happy" | "happy" | "calm" | "neutral" | "sad" | "very-sad" | "confused" | "overwhelmed";
 
 interface MoodSelectorProps {
   selectedMood: Mood | null;
@@ -20,10 +20,14 @@ interface MoodOption {
 
 export default function MoodSelector({ selectedMood, onMoodSelect }: MoodSelectorProps) {
   const moods: MoodOption[] = [
+    { value: "extremely-happy", label: "Extremely Happy", icon: <Smile className="h-5 w-5" />, emoji: "😄", className: "mood-extremely-happy" },
     { value: "happy", label: "Happy", icon: <Smile className="h-5 w-5" />, emoji: "😊", className: "mood-happy" },
     { value: "calm", label: "Calm", icon: <Sun className="h-5 w-5" />, emoji: "😌", className: "mood-calm" },
     { value: "neutral", label: "Neutral", icon: <Meh className="h-5 w-5" />, emoji: "😐", className: "mood-neutral" },
     { value: "sad", label: "Sad", icon: <Frown className="h-5 w-5" />, emoji: "😔", className: "mood-sad" },
+    { value: "very-sad", label: "Very Sad", icon: <Frown className="h-5 w-5" />, emoji: "😢", className: "mood-very-sad" },
+    { value: "confused", label: "Confused", icon: <HelpCircle className="h-5 w-5" />, emoji: "😕", className: "mood-confused" },
+    { value: "overwhelmed", label: "Overwhelmed", icon: <AlertTriangle className="h-5 w-5" />, emoji: "😰", className: "mood-overwhelmed" },
   ];
 
   return (

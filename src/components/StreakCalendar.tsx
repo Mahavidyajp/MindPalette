@@ -42,9 +42,10 @@ export default function StreakCalendar({
           }}
           modifiersStyles={{
             highlighted: {
-              backgroundColor: "hsl(var(--accent))",
-              color: "hsl(var(--accent-foreground))",
+              backgroundColor: "#9b87f5", // Modern purple color
+              color: "white",
               fontWeight: "bold",
+              borderRadius: "100%",
             },
           }}
         />

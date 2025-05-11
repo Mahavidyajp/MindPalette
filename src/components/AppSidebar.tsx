@@ -35,8 +35,6 @@ export default function AppSidebar({
 
   return (
     <Sidebar
-      defaultCollapsed={false}
-      collapsedWidth={0}
       className="border-r"
     >
       <SidebarHeader className="p-4">
@@ -83,34 +81,6 @@ export default function AppSidebar({
             </Button>
           </Link>
         </nav>
-
-        <div className="mb-4">
-          <h3 className="text-xs font-medium text-muted-foreground px-3 mb-2">
-            Collections
-          </h3>
-          <div className="space-y-1">
-            {collections.map((collection) => (
-              <Link
-                key={collection.id}
-                to={`/collections`}
-                className="block"
-              >
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-full justify-start text-sm font-normal"
-                >
-                  {collection.name}
-                  {collection.entryCount && (
-                    <span className="ml-auto text-xs text-muted-foreground">
-                      {collection.entryCount}
-                    </span>
-                  )}
-                </Button>
-              </Link>
-            ))}
-          </div>
-        </div>
       </SidebarContent>
 
       <SidebarFooter className="p-4 border-t">
