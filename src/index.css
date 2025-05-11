@@ -5,138 +5,118 @@
 
 @layer base {
   :root {
-    --background: 260 40% 98%;
-    --foreground: 260 10% 20%;
-
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
-    --card-foreground: 260 10% 20%;
-
+    --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 260 10% 20%;
-
-    --primary: 260 60% 75%;
-    --primary-foreground: 260 10% 100%;
-
-    --secondary: 260 20% 92%;
-    --secondary-foreground: 260 10% 20%;
-
-    --muted: 260 10% 92%;
-    --muted-foreground: 260 10% 50%;
-
-    --accent: 260 40% 92%;
-    --accent-foreground: 260 10% 20%;
-
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 142 76% 36%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-
-    --border: 260 20% 90%;
-    --input: 260 20% 90%;
-    --ring: 260 60% 75%;
-
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 142 76% 36%;
     --radius: 0.75rem;
-
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 260 10% 20%;
-    --sidebar-primary: 260 60% 75%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 260 20% 95%;
-    --sidebar-accent-foreground: 260 10% 20%;
-    --sidebar-border: 260 20% 90%;
-    --sidebar-ring: 260 60% 75%;
   }
 
   .dark {
-    --background: 260 20% 10%;
-    --foreground: 260 10% 90%;
-
-    --card: 260 15% 15%;
-    --card-foreground: 260 10% 90%;
-
-    --popover: 260 15% 15%;
-    --popover-foreground: 260 10% 90%;
-
-    --primary: 260 60% 70%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 260 20% 20%;
-    --secondary-foreground: 260 10% 90%;
-
-    --muted: 260 15% 25%;
-    --muted-foreground: 260 10% 70%;
-
-    --accent: 260 15% 25%;
-    --accent-foreground: 260 10% 90%;
-
-    --destructive: 0 62.8% 50.6%;
-    --destructive-foreground: 260 10% 90%;
-
-    --border: 260 15% 30%;
-    --input: 260 15% 30%;
-    --ring: 260 60% 70%;
-
-    --sidebar-background: 260 15% 15%;
-    --sidebar-foreground: 260 10% 90%;
-    --sidebar-primary: 260 60% 70%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 260 15% 25%;
-    --sidebar-accent-foreground: 260 10% 90%;
-    --sidebar-border: 260 15% 25%;
-    --sidebar-ring: 260 60% 70%;
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 142 70% 50%;
+    --primary-foreground: 144.9 80.4% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 142 70% 50%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground min-h-screen;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-  
-  .journal-card {
-    @apply rounded-xl border p-5 shadow-sm transition-all duration-200 hover:shadow-md;
-  }
-  
+}
+
+@layer utilities {
   .gradient-bg {
-    @apply bg-gradient-to-br from-journal-purple/20 to-journal-lavender/20;
+    background: linear-gradient(135deg, rgba(247, 251, 249, 1) 0%, rgba(233, 243, 239, 1) 100%);
   }
-  
+
+  .dark .gradient-bg {
+    background: linear-gradient(135deg, rgba(23, 28, 26, 1) 0%, rgba(18, 23, 21, 1) 100%);
+  }
+
   .mood-happy {
-    @apply bg-journal-happy text-emerald-700;
+    @apply bg-green-100 text-green-700 border-green-200;
+    .dark & {
+      @apply bg-green-900/30 text-green-400 border-green-800;
+    }
   }
-  
+
   .mood-calm {
-    @apply bg-journal-calm text-blue-700;
+    @apply bg-blue-100 text-blue-700 border-blue-200;
+    .dark & {
+      @apply bg-blue-900/30 text-blue-400 border-blue-800;
+    }
   }
-  
+
   .mood-neutral {
-    @apply bg-journal-neutral text-amber-700;
+    @apply bg-yellow-100 text-yellow-700 border-yellow-200;
+    .dark & {
+      @apply bg-yellow-900/30 text-yellow-400 border-yellow-800;
+    }
   }
-  
+
   .mood-sad {
-    @apply bg-journal-sad text-rose-700;
+    @apply bg-red-100 text-red-700 border-red-200;
+    .dark & {
+      @apply bg-red-900/30 text-red-400 border-red-800;
+    }
+  }
+
+  .journal-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .journal-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px -2px rgba(0, 0, 0, 0.1);
   }
   
-  /* Rich text editor styles */
-  .tiptap {
-    @apply min-h-[200px] p-3 rounded-md border border-border outline-none;
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
   }
   
-  .tiptap p {
-    @apply mb-2;
-  }
-  
-  .tiptap h1 {
-    @apply text-2xl font-bold mb-3;
-  }
-  
-  .tiptap h2 {
-    @apply text-xl font-bold mb-2;
-  }
-  
-  .tiptap h3 {
-    @apply text-lg font-bold mb-2;
+  @keyframes scaleIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 }
