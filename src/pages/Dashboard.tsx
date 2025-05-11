@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import JournalEntry, { JournalEntryProps } from "@/components/JournalEntry";
 import MoodChart from "@/components/MoodChart";
@@ -235,19 +234,31 @@ export default function Dashboard() {
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
                       <div>
-                        <div className="text-2xl font-bold">{entries.length}</div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-2xl font-bold">{entries.length}</span>
+                          <span className="text-2xl">📝</span>
+                        </div>
                         <div className="text-xs text-muted-foreground">Total Entries</div>
                       </div>
                       <div>
-                        <div className="text-2xl font-bold">5</div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-2xl font-bold">5</span>
+                          <span className="text-2xl">🔥</span>
+                        </div>
                         <div className="text-xs text-muted-foreground">Current Streak</div>
                       </div>
                       <div>
-                        <div className="text-2xl font-bold">7</div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-2xl font-bold">7</span>
+                          <span className="text-2xl">🏆</span>
+                        </div>
                         <div className="text-xs text-muted-foreground">Longest Streak</div>
                       </div>
                       <div>
-                        <div className="text-2xl font-bold">3</div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-2xl font-bold">3</span>
+                          <span className="text-2xl">📅</span>
+                        </div>
                         <div className="text-xs text-muted-foreground">This Week</div>
                       </div>
                     </div>
