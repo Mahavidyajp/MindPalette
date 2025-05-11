@@ -11,15 +11,9 @@ import { useState } from "react";
 
 interface StreakCalendarProps {
   entryDates: Date[];
-  currentStreak: number;
-  longestStreak: number;
 }
 
-export default function StreakCalendar({ 
-  entryDates, 
-  currentStreak, 
-  longestStreak 
-}: StreakCalendarProps) {
+export default function StreakCalendar({ entryDates }: StreakCalendarProps) {
   const [date, setDate] = useState<Date | undefined>(new Date());
 
   // Create a copy of the entry dates to use for highlighting
@@ -28,7 +22,10 @@ export default function StreakCalendar({
   return (
     <Card className="col-span-2">
       <CardHeader>
-        <CardTitle>Journal Streak</CardTitle>
+        <CardTitle className="flex items-center gap-2">
+          <span>Journal Streak</span>
+          <span className="text-2xl">📝</span>
+        </CardTitle>
         <CardDescription>Your journaling consistency</CardDescription>
       </CardHeader>
       <CardContent>

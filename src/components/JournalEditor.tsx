@@ -11,7 +11,7 @@ import { JournalEntryProps } from "./JournalEntry";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-type Mood = "happy" | "calm" | "neutral" | "sad";
+type Mood = "extremely-happy" | "happy" | "neutral" | "sad" | "very-sad" | "confused" | "overwhelmed";
 
 interface Collection {
   id: string;
@@ -52,7 +52,7 @@ export default function JournalEditor({
 }: JournalEditorProps) {
   const [title, setTitle] = useState(initialEntry?.title || "");
   const [content, setContent] = useState(initialEntry?.content || "");
-  const [mood, setMood] = useState<Mood | null>(initialEntry?.mood || null);
+  const [mood, setMood] = useState<Mood | null>(initialEntry?.mood as Mood || null);
   const [selectedCollections, setSelectedCollections] = useState<string[]>(
     initialEntry?.collections || []
   );
@@ -63,7 +63,7 @@ export default function JournalEditor({
       // Reset form when dialog opens
       setTitle(initialEntry?.title || "");
       setContent(initialEntry?.content || "");
-      setMood(initialEntry?.mood || null);
+      setMood(initialEntry?.mood as Mood || null);
       setSelectedCollections(initialEntry?.collections || []);
     }
   }, [isOpen, initialEntry]);
@@ -116,6 +116,11 @@ export default function JournalEditor({
     );
   };
 
+  // Fix for the type error by creating a handler function
+  const handleMoodSelect = (selectedMood: Mood) => {
+    setMood(selectedMood);
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
@@ -150,7 +155,7 @@ export default function JournalEditor({
             </div>
           </div>
           
-          <MoodSelector selectedMood={mood} onMoodSelect={setMood} />
+          <MoodSelector selectedMood={mood} onMoodSelect={handleMoodSelect} />
           
           <div className="space-y-2">
             <Label>Collections</Label>

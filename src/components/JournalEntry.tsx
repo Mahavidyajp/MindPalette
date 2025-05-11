@@ -7,7 +7,7 @@ export interface JournalEntryProps {
   id: string;
   title: string;
   content: string;
-  mood: "happy" | "calm" | "neutral" | "sad";
+  mood: "extremely-happy" | "happy" | "neutral" | "sad" | "very-sad" | "confused" | "overwhelmed";
   collections: string[];
   createdAt: Date;
   isDraft?: boolean;
@@ -27,14 +27,20 @@ export default function JournalEntry({
 
   const getMoodClass = () => {
     switch (mood) {
+      case "extremely-happy":
+        return "mood-extremely-happy";
       case "happy":
         return "mood-happy";
-      case "calm":
-        return "mood-calm";
       case "neutral":
         return "mood-neutral";
       case "sad":
         return "mood-sad";
+      case "very-sad":
+        return "mood-very-sad";
+      case "confused":
+        return "mood-confused";
+      case "overwhelmed":
+        return "mood-overwhelmed";
       default:
         return "";
     }
@@ -42,14 +48,20 @@ export default function JournalEntry({
 
   const getMoodEmoji = () => {
     switch (mood) {
+      case "extremely-happy":
+        return "😄";
       case "happy":
         return "😊";
-      case "calm":
-        return "😌";
       case "neutral":
         return "😐";
       case "sad":
         return "😔";
+      case "very-sad":
+        return "😢";
+      case "confused":
+        return "😕";
+      case "overwhelmed":
+        return "😰";
       default:
         return "";
     }

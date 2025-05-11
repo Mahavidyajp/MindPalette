@@ -18,12 +18,15 @@ import {
 } from "recharts";
 import { format } from "date-fns";
 
-// Define mood values
+// Define mood values - updated to remove "calm"
 const moodToValue = {
-  happy: 3,
-  calm: 2,
-  neutral: 1,
-  sad: 0,
+  "extremely-happy": 6,
+  "happy": 5,
+  "neutral": 4,
+  "sad": 3,
+  "very-sad": 2,
+  "confused": 1,
+  "overwhelmed": 0
 };
 
 // Define the custom tooltip
@@ -46,10 +49,13 @@ const CustomTooltip = ({
 
 // Define the color mapping for moods
 const moodColors = {
-  happy: "#A7F3D0", // green
-  calm: "#BAE6FD", // blue
-  neutral: "#FEF08A", // yellow
-  sad: "#FECACA", // red
+  "extremely-happy": "#A7F3D0", // bright green
+  "happy": "#BAE6FD", // light blue
+  "neutral": "#FEF08A", // yellow
+  "sad": "#FECACA", // light red
+  "very-sad": "#F87171", // red
+  "confused": "#C4B5FD", // purple
+  "overwhelmed": "#FB923C" // orange
 };
 
 interface MoodDataPoint {
@@ -99,19 +105,25 @@ export default function MoodChart({ data }: MoodChartProps) {
               <YAxis
                 tickFormatter={(value) => {
                   switch (value) {
-                    case 0:
-                      return "Sad";
-                    case 1:
-                      return "Neutral";
-                    case 2:
-                      return "Calm";
-                    case 3:
+                    case 6:
+                      return "Extremely Happy";
+                    case 5:
                       return "Happy";
+                    case 4:
+                      return "Neutral";
+                    case 3:
+                      return "Sad";
+                    case 2:
+                      return "Very Sad";
+                    case 1:
+                      return "Confused";
+                    case 0:
+                      return "Overwhelmed";
                     default:
                       return "";
                   }
                 }}
-                domain={[0, 3]}
+                domain={[0, 6]}
                 stroke="var(--muted-foreground)"
                 fontSize={12}
                 tickLine={false}

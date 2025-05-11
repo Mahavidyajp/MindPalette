@@ -38,7 +38,7 @@ export default function CollectionsFilter({
             });
           }}
         >
-          All
+          All 📚
         </Badge>
         
         {collections.map((collection) => (
