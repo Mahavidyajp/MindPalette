@@ -66,8 +66,8 @@ mind-palette/
 
 1. **Clone the repo:**
    ```bash
-   git clone https://github.com/yourusername/mind-palette.git
-   cd mind-palette
+   git clone https://github.com/yourusername/MindPalette.git
+   cd MindPalette
 ````
 
 2. **Install dependencies:**
