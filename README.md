@@ -74,18 +74,19 @@ mind-palette/
 
    ```bash
    npm install
-   ```
+ ````
 
 3. **Run the development server:**
 
    ```bash
    npm run dev
-   ```
+```
 
 4. **Open in browser:**
    Navigate to `http://localhost:5173` (or the port shown in your terminal).
 
 ---
+```
 
 ## 🧩 Future Scope
 
