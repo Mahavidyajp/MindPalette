@@ -70,9 +70,9 @@ mind-palette/
    cd MindPalette
 ```
 
-2. ****Install dependencies:****
+2. **Install dependencies:**
 
- ```bash
+```bash
    npm install
  ```
 
