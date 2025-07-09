@@ -1,73 +1,97 @@
-# Welcome to your Lovable project
+# 🧠 Mind Palette – Journaling Redefined (Frontend-Only)
 
-## Project info
+**Mind Palette** is a minimalist, cognitive-friendly journaling platform that helps users reflect, track moods, and organize thoughts into meaningful collections. Built with **React**, this version works entirely on the frontend — no backend, no authentication, no server setup needed.
 
-**URL**: https://lovable.dev/projects/d69affd0-98cc-493b-a086-64bc62d1c576
+---
 
-## How can I edit this code?
+## 🌟 Features
 
-There are several ways of editing your application.
+### ✍️ Rich Journal Editor
+- Clean, distraction-free writing interface.
+- Built with `ReactQuill` for rich text formatting.
+- Save journal entries locally in browser (e.g., `localStorage` or `IndexedDB`).
+- Add **mood tags** and group entries into **collections**.
 
-**Use Lovable**
+### 🎭 Mood Tracking & Analytics
+- Interactive **MoodChart** to track emotional trends.
+- Visualizes how your mood shifts over days or weeks.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d69affd0-98cc-493b-a086-64bc62d1c576) and start prompting.
+### 📅 Streak Calendar
+- Track journaling consistency through a visual calendar.
+- Motivates regular journaling with streaks.
 
-Changes made via Lovable will be committed automatically to this repo.
+### 🗂️ Collections Page
+- Group entries under custom categories (e.g., "Work", "Personal", "Dreams").
+- Filter and browse based on **mood**, **collection**, or **date**.
 
-**Use your preferred IDE**
+### 🧭 Dashboard Overview
+- Summary of recent entries, mood analytics, and journaling streaks.
+- Quick insights into your mental and writing patterns.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🚀 Tech Stack
 
-Follow these steps:
+| Layer        | Technology                         |
+|--------------|-------------------------------------|
+| **Frontend** | React.js, Tailwind CSS, Framer Motion |
+| **Text Editor** | ReactQuill                      |
+| **Charts**   | Recharts                           |
+| **Storage**  | localStorage / mock data (frontend only) |
+| **Calendar** | Custom Streak Calendar Component   |
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 📁 Folder Structure
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
 ```
 
-**Edit a file directly in GitHub**
+mind-palette/
+├── public/                 # Static assets
+├── src/
+│   ├── components/         # UI Components (Editor, MoodChart, Calendar, etc.)
+│   ├── pages/              # Pages (Home, Journal, Collections, Dashboard)
+│   ├── utils/              # Helper functions (e.g., local storage handling)
+│   ├── styles/             # Tailwind config and custom styles
+│   └── App.jsx             # Main app entry
+├── tailwind.config.js
+├── package.json
+└── README.md
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+````
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🧪 How to Run Locally
 
-## What technologies are used for this project?
+1. **Clone the repo:**
+   ```bash
+   git clone https://github.com/yourusername/mind-palette.git
+   cd mind-palette
+````
 
-This project is built with:
+2. **Install dependencies:**
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+   ```bash
+   npm install
+   ```
 
-## How can I deploy this project?
+3. **Run the development server:**
 
-Simply open [Lovable](https://lovable.dev/projects/d69affd0-98cc-493b-a086-64bc62d1c576) and click on Share -> Publish.
+   ```bash
+   npm run dev
+   ```
 
-## Can I connect a custom domain to my Lovable project?
+4. **Open in browser:**
+   Navigate to `http://localhost:5173` (or the port shown in your terminal).
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🧩 Future Scope
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+* Add backend for cloud sync and multi-device access.
+* AI-powered mood prediction from journal text.
+* Export entries as PDF or Markdown.
+* Password-protected or encrypted journals.
+
+---
