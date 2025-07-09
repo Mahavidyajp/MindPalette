@@ -70,26 +70,26 @@ mind-palette/
    cd MindPalette
 ```
 
-2. **Install dependencies:**
+2. ****Install dependencies:****
 
-   ```bash
+ ```bash
    npm install
  ```
 
 3. **Run the development server:**
 
-   ```bash
+ ```bash
    npm run dev
 ```
 
-4. **Open in browser:**
+4. ****Open in browser:****
 ```
    Navigate to `http://localhost:5173` (or the port shown in your terminal).
 
 ---
 ```
 
-## 🧩 Future Scope
+## 🧩 **Future Scope**
 
 ```
 
