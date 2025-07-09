@@ -78,7 +78,7 @@ mind-palette/
 
 3. **Run the development server:**
 
- ```bash
+ ``` bash
    npm run dev
 ```
 
