@@ -17,6 +17,7 @@ import {
   TooltipProps,
 } from "recharts";
 import { format } from "date-fns";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 // Define mood values - updated to remove "calm"
 const moodToValue = {
@@ -75,13 +76,15 @@ export default function MoodChart({ data }: MoodChartProps) {
   );
 
   return (
-    <Card className="col-span-3">
-      <CardHeader>
-        <CardTitle>Mood Trends</CardTitle>
-        <CardDescription>Your mood patterns over time</CardDescription>
+    <Card className="col-span-3 w-full max-w-full">
+      <CardHeader className="space-y-1 sm:space-y-2">
+        <CardTitle className="text-base sm:text-lg">Mood Trends</CardTitle>
+        <CardDescription className="text-sm sm:text-base">
+          Your mood patterns over time
+        </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="h-[300px]">
+        <div className="h-[250px] sm:h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart
               data={chartData}
@@ -98,7 +101,7 @@ export default function MoodChart({ data }: MoodChartProps) {
                 dataKey="date"
                 tickFormatter={(date) => format(new Date(date), "MMM d")}
                 stroke="var(--muted-foreground)"
-                fontSize={12}
+                fontSize={10}
                 tickLine={false}
                 axisLine={false}
               />
@@ -106,26 +109,26 @@ export default function MoodChart({ data }: MoodChartProps) {
                 tickFormatter={(value) => {
                   switch (value) {
                     case 6:
-                      return "Extremely Happy";
+                      return "😊";
                     case 5:
-                      return "Happy";
+                      return "🙂";
                     case 4:
-                      return "Neutral";
+                      return "😐";
                     case 3:
-                      return "Sad";
+                      return "😕";
                     case 2:
-                      return "Very Sad";
+                      return "😢";
                     case 1:
-                      return "Confused";
+                      return "😖";
                     case 0:
-                      return "Overwhelmed";
+                      return "😵";
                     default:
                       return "";
                   }
                 }}
                 domain={[0, 6]}
                 stroke="var(--muted-foreground)"
-                fontSize={12}
+                fontSize={10}
                 tickLine={false}
                 axisLine={false}
               />

@@ -31,7 +31,7 @@ export default function Login() {
       </div>
       <FadeIn delay={0.1}>
         <div className="w-full max-w-md mx-auto mb-8 text-center">
-          <h1 className="text-5xl font-bold text-primary mb-2">Reflect</h1>
+          <h1 className="text-5xl font-bold text-primary mb-2">MindPalette</h1>
           <p className="text-muted-foreground">
             Your personal space for reflection and growth
           </p>

@@ -10,6 +10,7 @@ import Collections from "./pages/Collections";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import ThemeProvider from "./components/ThemeProvider";
+import MoodCalendar from "./pages/MoodCalendar"
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="/entries" element={<JournalEntries />} />
             <Route path="/collections" element={<Collections />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/calender" element={<MoodCalendar/>} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>

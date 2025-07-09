@@ -97,11 +97,27 @@ export default function JournalEditor({
         isDraft,
       };
 
-      // Save the entry
-      onSave(entry);
+  const response = await fetch( initialEntry?.id 
+    ? `/api/journals/${initialEntry.id}`
+    :`/api/journals`,
+    {
+      method: initialEntry?.id ? "PUT" : "POST",
+      headers:{
+        "Content-Type" : "application/json",
+      },
+      body:JSON.stringify(entry),
+    }
+  );
+   if (!response.ok) {
+        throw new Error("Failed to save entry");
+      }
+
+      const savedEntry = await response.json();
+
       toast.success(isDraft ? "Draft saved" : "Journal entry saved");
       onClose();
     } catch (error) {
+      console.error(error);
       toast.error("Failed to save journal entry");
     } finally {
       setIsSaving(false);

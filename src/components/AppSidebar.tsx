@@ -40,7 +40,7 @@ export default function AppSidebar({
       <SidebarHeader className="p-4">
         <div className="flex items-center gap-2 mb-4">
           <FileText className="h-6 w-6 text-primary" />
-          <h1 className="text-xl font-bold text-primary">Reflect</h1>
+          <h1 className="text-xl font-bold text-primary">Mindpalette</h1>
         </div>
         <Button onClick={onNewEntry} className="w-full mb-2" size="sm">
           <PencilLine className="h-4 w-4 mr-2" />
@@ -78,6 +78,16 @@ export default function AppSidebar({
             >
               <FolderOpen className="h-4 w-4 mr-2" />
               Collections
+            </Button>
+          </Link>
+          <Link to="/calender">
+            <Button
+              variant={isActive("/calender") ? "secondary" : "ghost"}
+              className="w-full justify-start"
+              size="sm"
+            >
+              <FolderOpen className="h-4 w-4 mr-2" />
+              Mood Calender
             </Button>
           </Link>
         </nav>
