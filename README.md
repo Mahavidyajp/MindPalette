@@ -89,9 +89,12 @@ mind-palette/
 
 ## 🧩 Future Scope
 
+```
+
 * Add backend for cloud sync and multi-device access.
 * AI-powered mood prediction from journal text.
 * Export entries as PDF or Markdown.
 * Password-protected or encrypted journals.
 
 ---
+```
