@@ -83,6 +83,7 @@ mind-palette/
 ```
 
 4. **Open in browser:**
+```
    Navigate to `http://localhost:5173` (or the port shown in your terminal).
 
 ---
