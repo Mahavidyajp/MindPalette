@@ -68,13 +68,13 @@ mind-palette/
    ```bash
    git clone https://github.com/yourusername/MindPalette.git
    cd MindPalette
-````
+```
 
 2. **Install dependencies:**
 
    ```bash
    npm install
- ````
+ ```
 
 3. **Run the development server:**
 
